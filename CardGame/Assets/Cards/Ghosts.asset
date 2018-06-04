@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1fc703c6018c5244a8ab502bcc685b36, type: 3}
+  m_Name: Ghosts
+  m_EditorClassIdentifier: 
+  name: Ghosts
+  desc: Beyond death and life
+  def: 12
+  dmg: 4
+  hp: 4
+  art: {fileID: 21300000, guid: cc0c7bf6bfed8c44c86f71fd5067bdc8, type: 3}
+  currentItemType: 0
