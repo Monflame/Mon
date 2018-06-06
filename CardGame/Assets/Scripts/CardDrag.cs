@@ -28,13 +28,37 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		Vector3 newPos = eventData.position;
 		transform.position = newPos + offset;
+
+		if(TempCardGO.transform.parent != TempCardParent)
+			TempCardGO.transform.SetParent(TempCardParent);
+			
+		CheckPosition();
 	}
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
 		transform.SetParent(DefaultParent);
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
+		transform.SetSiblingIndex(TempCardGO.transform.GetSiblingIndex());
 		TempCardGO.transform.SetParent(GameObject.Find("Canvas").transform);
-		TempCardGO.transform.localPosition = new Vector3(890,0);
+		TempCardGO.transform.localPosition = new Vector3(1048,0);
+	}
+
+	void CheckPosition()
+	{
+		int newIndex = TempCardParent.childCount;
+
+		for(int i = 0; i < TempCardParent.childCount; i++)
+		{
+			if(transform.position.x < TempCardParent.GetChild(i).position.x)
+			{
+				newIndex = i;
+				if(TempCardGO.transform.GetSiblingIndex()<newIndex)
+					newIndex--;
+				break;
+			}
+		}
+
+		TempCardGO.transform.SetSiblingIndex(newIndex);
 	}
 }
