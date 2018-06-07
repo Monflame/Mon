@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class CardDisplay : MonoBehaviour {
 
-	public Card card;
+	public Card CardSelf;
 	public Text nameText;
 	public Text descText;
 	public Image artImage;
@@ -13,7 +13,14 @@ public class CardDisplay : MonoBehaviour {
 	public Text dmgText;
 	public Text hpText;
 
-	void Start()
+	public void HideCardInfo(Card card)
+	{
+		CardSelf = card;
+		artImage.sprite = null;
+		nameText.text = " ";
+	}
+
+	public void ShowCardInfo(Card card)
 	{
 		card.Print();
 		nameText.text = card.name;
@@ -22,5 +29,10 @@ public class CardDisplay : MonoBehaviour {
 		dmgText.text = card.dmg.ToString();
 		defText.text = card.def.ToString();
 		hpText.text = card.hp.ToString();
+	}
+
+	private void Start()
+	{
+		ShowCardInfo(CardList.AllCards[transform.GetSiblingIndex()]);
 	}
 }

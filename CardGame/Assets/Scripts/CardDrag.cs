@@ -8,6 +8,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	Vector3 offset;
 	public Transform DefaultParent, TempCardParent;
 	GameObject TempCardGO;
+	public bool IsDragable;
 
 	void Awake()
 	{
@@ -18,6 +19,9 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		offset = transform.position - (Vector3)eventData.position; 
 		DefaultParent = TempCardParent = transform.parent;
+		IsDragable = DefaultParent.GetComponent<CardDrop>().Type == FieldType.hand_self;
+		if(!IsDragable)
+			return;
 		TempCardGO.transform.SetParent(DefaultParent);
 		TempCardGO.transform.SetSiblingIndex(transform.GetSiblingIndex());
 		transform.SetParent(DefaultParent.parent); //turn off if change hierarchy
@@ -26,6 +30,9 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	public void OnDrag(PointerEventData eventData)
 	{
+		if(!IsDragable)
+			return;
+
 		Vector3 newPos = eventData.position;
 		transform.position = newPos + offset;
 
@@ -37,11 +44,14 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
+		if(!IsDragable)
+			return;
+
 		transform.SetParent(DefaultParent);
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
 		transform.SetSiblingIndex(TempCardGO.transform.GetSiblingIndex());
 		TempCardGO.transform.SetParent(GameObject.Find("Canvas").transform);
-		TempCardGO.transform.localPosition = new Vector3(1048,0);
+		TempCardGO.transform.localPosition = new Vector3(1042,0);
 	}
 
 	void CheckPosition()

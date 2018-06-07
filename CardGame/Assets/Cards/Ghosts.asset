@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Name: Ghosts
   m_EditorClassIdentifier: 
   name: Ghosts
-  desc: Beyond death and life
+  desc: Beyond the death and life
   def: 12
   dmg: 4
   hp: 4

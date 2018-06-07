@@ -23,9 +23,13 @@ public class Card : ScriptableObject {
 
 	public CardType currentItemType;
 
-
 	public void Print()
 	{
 		Debug.Log(name + ": " + desc);
 	}
+}
+
+public static class CardList
+{
+	public static List<Card> AllCards = new List<Card>();
 }
