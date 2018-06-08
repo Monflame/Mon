@@ -55,6 +55,8 @@
      <Compile Include="Assets\Scripts\CardDisplay.cs" />
      <Compile Include="Assets\Scripts\CardDrag.cs" />
      <Compile Include="Assets\Scripts\CardDrop.cs" />
+     <Compile Include="Assets\Scripts\CardInfo.cs" />
+     <Compile Include="Assets\Scripts\CardScr.cs" />
      <Compile Include="Assets\Scripts\ChangeFrame.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
@@ -111,11 +113,11 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
- <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
- </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
- <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ <HintPath>C:/Users/Shadowone/Desktop/Mon-work/CardGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.StandardEvents">
+ <HintPath>C:/Users/Shadowone/Desktop/Mon-work/CardGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -313,10 +315,10 @@
  <HintPath>E:/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/RuntimeEditor/UnityEngine.SpatialTracking.dll</HintPath>
  </Reference>
  <Reference Include="TextMeshPro-5.6-Editor">
- <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-5.6-Editor.dll</HintPath>
+ <HintPath>C:/Users/Shadowone/Desktop/Mon-work/CardGame/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-5.6-Editor.dll</HintPath>
  </Reference>
  <Reference Include="TextMeshPro-5.6-Runtime">
- <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-5.6-Runtime.dll</HintPath>
+ <HintPath>C:/Users/Shadowone/Desktop/Mon-work/CardGame/Assets/TextMesh Pro/Plugins/Editor DLL/TextMeshPro-5.6-Runtime.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.Analytics">
  <HintPath>C:/Users/Shadowone/AppData/Local/Unity/cache/packages/packages.unity.com/com.unity.analytics@2.0.16/UnityEngine.Analytics.dll</HintPath>
