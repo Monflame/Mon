@@ -17,4 +17,4 @@ MonoBehaviour:
   dmg: 7
   hp: 4
   art: {fileID: 21300000, guid: c9f0eaf6253b8e542b9f0136fd34a72b, type: 3}
-  currentItemType: 0
+  currentItemType: 1

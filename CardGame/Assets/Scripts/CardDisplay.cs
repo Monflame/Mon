@@ -20,9 +20,10 @@ public class CardDisplay : MonoBehaviour {
 		nameText.text = " ";
 	}
 
-	public void ShowCardInfo(Card card)
+	public void ShowCardInfo(Card.CardStr card)
 	{
-		card.Print();
+		//card.Print();
+		CardSelf = card;
 		nameText.text = card.name;
 		descText.text = card.desc;
 		artImage.sprite = card.art;
