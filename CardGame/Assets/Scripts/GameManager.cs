@@ -6,7 +6,7 @@ using TMPro;
 
 public class CardPull
 {
-	public List<Item> DeckSelf, DeckEnemy,
+	public List<CardObj> DeckSelf, DeckEnemy,
 						HandSelf, HandEnemy,
 						Fieldself, FieldEnemy;
 
@@ -14,17 +14,17 @@ public class CardPull
 	{
 		DeckSelf = GetDeckCards();
 		DeckEnemy = GetDeckCards();
-		HandSelf = new List<Item>();
-		HandEnemy = new List<Item>();
-		Fieldself = new List<Item>();
-		FieldEnemy = new List<Item>();
+		HandSelf = new List<CardObj>();
+		HandEnemy = new List<CardObj>();
+		Fieldself = new List<CardObj>();
+		FieldEnemy = new List<CardObj>();
 	}
 
-	List<Item> GetDeckCards()
+	List<CardObj> GetDeckCards()
 	{
-		List<Item> list = new List<Item>();
+		List<CardObj> list = new List<CardObj>();
 		for(int i = 0; i < 10; i++)
-			list.Add(ItemManager.ItemsList[Random.Range(0,ItemManager.ItemsList.Count)]);	
+			list.Add(CardList.AllCards[Random.Range(0,CardList.AllCards.Count)]);	
 		return list;
 	}
 }
@@ -42,26 +42,26 @@ public class GameManager : MonoBehaviour {
 		GetHandCards(CurrentPull.DeckEnemy, HandEnemy);
 		GetHandCards(CurrentPull.DeckSelf, HandSelf);
 	}
-	void GetHandCards(List<Item> deck, Transform hand)
+	void GetHandCards(List<CardObj> deck, Transform hand)
 	{
 		int i = 0;
-		while(i++ <4)
+		while(i++ <5)
 			GetCardToHand(deck, hand);
 	}
 
-	void GetCardToHand(List<Item> deck, Transform hand)
+	void GetCardToHand(List<CardObj> deck, Transform hand)
 	{
 		if(deck.Count == 0)
 			return;
 
-		Item card = deck[0];
+		CardObj card = deck[0];
 
 		GameObject cardGO = Instantiate(CardPref, hand, false);
 
 		if(hand == HandEnemy)
-			cardGO.GetComponent<CardInfo>().HideItemInfo(card);
+			cardGO.GetComponent<CardDisplay>().HideCardInfo(card);
 		else
-			cardGO.GetComponent<CardInfo>().ShowItemInfo(card);
+			cardGO.GetComponent<CardDisplay>().ShowCardInfo(card);
 
 		deck.RemoveAt(0);
 	}

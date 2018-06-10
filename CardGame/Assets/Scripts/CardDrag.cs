@@ -51,7 +51,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		GetComponent<CanvasGroup>().blocksRaycasts = true;
 		transform.SetSiblingIndex(TempCardGO.transform.GetSiblingIndex());
 		TempCardGO.transform.SetParent(GameObject.Find("Canvas").transform);
-		TempCardGO.transform.localPosition = new Vector3(1042,0);
+		TempCardGO.transform.localPosition = new Vector3(985,0);
 	}
 
 	void CheckPosition()

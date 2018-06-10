@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class ChangeFrame : MonoBehaviour {
 
-	RawImage _raw;
-	public Texture[] _texture;
+	Image _raw;
+	public Sprite[] _texture;
 	public Button s_button, c_button, l_button;
 
 	void Start()
@@ -23,19 +23,19 @@ public class ChangeFrame : MonoBehaviour {
 
 	void TaskSimple()
 	{
-		_raw = GetComponent<RawImage>();
-		_raw.texture = _texture[0];
+		_raw = GetComponent<Image>();
+		_raw.sprite = _texture[0];
 	}
 
 	void TaskCraft()
 	{
-		_raw = GetComponent<RawImage>();
-		_raw.texture = _texture[1];
+		_raw = GetComponent<Image>();
+		_raw.sprite = _texture[1];
 	}
 
 	void TaskLegendary()
 	{
-		_raw = GetComponent<RawImage>();
-		_raw.texture = _texture[2];
+		_raw = GetComponent<Image>();
+		_raw.sprite = _texture[2];
 	}
 }

@@ -2,37 +2,34 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class CardDisplay : MonoBehaviour {
 
-	public Card CardSelf;
-	public Text nameText;
-	public Text descText;
+	public CardObj CardSelf;
+	public TextMeshProUGUI nameText;
+	public TextMeshProUGUI descText;
 	public Image artImage;
-	public Text defText;
-	public Text dmgText;
-	public Text hpText;
+	public TextMeshProUGUI defText;
+	public TextMeshProUGUI dmgText;
+	public TextMeshProUGUI hpText;
 
-	public void HideCardInfo(Card card)
+	public void HideCardInfo(CardObj card)
 	{
-		CardSelf = card;
-		artImage.sprite = null;
-		nameText.text = " ";
+		ShowCardInfo(card);
+		//CardSelf = card;
+		//artImage.sprite = null;
+		//nameText.text = " ";
 	}
 
-	public void ShowCardInfo(Card card)
+	public void ShowCardInfo(CardObj card)
 	{
-		card.Print();
+		CardSelf = card;
 		nameText.text = card.name;
 		descText.text = card.desc;
 		artImage.sprite = card.art;
 		dmgText.text = card.dmg.ToString();
 		defText.text = card.def.ToString();
 		hpText.text = card.hp.ToString();
-	}
-
-	private void Start()
-	{
-		ShowCardInfo(CardList.AllCards[transform.GetSiblingIndex()]);
 	}
 }
