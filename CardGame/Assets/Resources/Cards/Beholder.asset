@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc703c6018c5244a8ab502bcc685b36, type: 3}
   m_Name: Beholder
   m_EditorClassIdentifier: 
+  CardSelf: {fileID: 0}
   name: Beholder
-  desc: 
+  desc: Always watching you
   def: 5
   dmg: 8
   hp: 3
   art: {fileID: 21300000, guid: c9f0eaf6253b8e542b9f0136fd34a72b, type: 3}
-  currentItemType: 0
+  type: {fileID: 21300000, guid: 0881e47dc6ef5974aae75370626ed07a, type: 3}
+  CurrentItemType: 0

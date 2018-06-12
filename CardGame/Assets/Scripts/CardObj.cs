@@ -1,6 +1,8 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEditor;
+using System;
 using TMPro;
 
 [CreateAssetMenu(fileName = "New Card", menuName = "Card")]
@@ -13,37 +15,15 @@ public class CardObj : ScriptableObject {
 	public int dmg;
 	public int hp;
 	public Sprite art;
+	public Sprite type;
 
 	public enum CardType
 	{
 		Simple,
 		Craft,
-		Legendary
+		Legendary,
+		Empty__
 	}
-
-	CardType Type;
 
 	public CardType CurrentItemType;
-
-	public void Init(string name, string desc, int def, int dmg, int hp, Sprite art)
-	{
-		this.name = name;
-		this.desc = desc;
-		this.def = def;
-		this.dmg = dmg;
-		this.hp = hp;
-		this.art = art;
-	}
-
-	public static CardObj CreateInstance(string name, string desc, int def, int dmg, int hp, Sprite art)
-	{
-		var data = ScriptableObject.CreateInstance<CardObj>();
-		data.Init(name, desc, def, dmg, hp, art);
-		return data;
-	}
-
-	/*public CardObj(CardObj card)
-	{
-		CardSelf = card;
-	}*/
 }

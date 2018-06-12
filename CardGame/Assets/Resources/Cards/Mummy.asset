@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc703c6018c5244a8ab502bcc685b36, type: 3}
   m_Name: Mummy
   m_EditorClassIdentifier: 
+  CardSelf: {fileID: 11400000}
   name: Mummy
-  desc: 
-  def: 0
-  dmg: 4
-  hp: 15
+  desc: Rised from its tomb
+  def: 5
+  dmg: 5
+  hp: 12
   art: {fileID: 21300000, guid: bfc30d8c0a0662247b101f135edb255a, type: 3}
-  currentItemType: 0
+  type: {fileID: 21300000, guid: 0881e47dc6ef5974aae75370626ed07a, type: 3}
+  CurrentItemType: 0

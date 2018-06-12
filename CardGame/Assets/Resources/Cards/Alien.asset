@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc703c6018c5244a8ab502bcc685b36, type: 3}
   m_Name: Alien
   m_EditorClassIdentifier: 
+  CardSelf: {fileID: 0}
   name: Alien
-  desc: 
-  def: 0
+  desc: From the outer Space
+  def: 3
   dmg: 10
-  hp: 4
+  hp: 5
   art: {fileID: 21300000, guid: 4b2926873850e994f97d091d1883fe6b, type: 3}
-  currentItemType: 0
+  type: {fileID: 21300000, guid: 0881e47dc6ef5974aae75370626ed07a, type: 3}
+  CurrentItemType: 0
