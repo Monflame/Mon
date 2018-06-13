@@ -34,19 +34,34 @@ public class GameManager : MonoBehaviour {
 	public CardPull CurrentPull;
 	public Transform HandSelf, HandEnemy;
 	public GameObject CardPref;
+	int Turn, TurnTime = 30;
+	public TextMeshProUGUI TurnTimeText;
+	public Button EndTurnBtn;
+	public int cardCounter = 0;
+
+	public bool IsPlayerTurn
+	{
+		get
+		{
+			return Turn % 2 == 0;
+		}
+	}
 
 	void Start()
 	{
+		Turn = 0;
 		CurrentPull = new CardPull();
 
 		GetHandCards(CurrentPull.DeckEnemy, HandEnemy);
 		GetHandCards(CurrentPull.DeckSelf, HandSelf);
+		StartCoroutine(TurnFunc());
 	}
 	void GetHandCards(List<CardObj> deck, Transform hand)
 	{
 		int i = 0;
 		while(i++ <5)
 			GetCardToHand(deck, hand);
+			cardCounter++;
 	}
 
 	void GetCardToHand(List<CardObj> deck, Transform hand)
@@ -64,5 +79,55 @@ public class GameManager : MonoBehaviour {
 			cardGO.GetComponent<CardDisplay>().ShowCardInfo(card);
 
 		deck.RemoveAt(0);
+	}
+
+	IEnumerator TurnFunc()
+	{
+		TurnTime = 26;
+		TurnTimeText.text = TurnTime.ToString();
+
+		if(IsPlayerTurn)
+		{
+			while(TurnTime-- > 0)
+			{
+				TurnTimeText.text = TurnTime.ToString();
+				yield return new WaitForSeconds(1);
+			}
+		}
+		else
+		{
+			while(TurnTime-- > 22)
+			{
+				TurnTimeText.text = TurnTime.ToString();
+				yield return new WaitForSeconds(1);
+			}
+		}
+		ChangeTurn();
+	}
+
+	/*IEnumerator CardCount()
+	{
+		if(IsPlayerTurn)
+		{
+			if()
+			{
+				
+			}
+		}*/
+
+	public void ChangeTurn()
+	{
+		StopAllCoroutines();
+		Turn++;
+		EndTurnBtn.interactable = IsPlayerTurn;
+		if(IsPlayerTurn)
+			AddNewCard();
+		StartCoroutine(TurnFunc());
+	}
+
+	void AddNewCard()
+	{
+		GetCardToHand(CurrentPull.DeckEnemy, HandEnemy);
+		GetCardToHand(CurrentPull.DeckSelf, HandSelf);
 	}
 }
