@@ -11,10 +11,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1fc703c6018c5244a8ab502bcc685b36, type: 3}
   m_Name: Ghosts
   m_EditorClassIdentifier: 
+  CardSelf: {fileID: 0}
   name: Ghosts
-  desc: 
-  def: 10
+  desc: Beyond the death and life
+  def: 12
   dmg: 3
   hp: 10
   art: {fileID: 21300000, guid: cc0c7bf6bfed8c44c86f71fd5067bdc8, type: 3}
-  currentItemType: 0
+  type: {fileID: 21300000, guid: 7f1426e504555794585b0dee1ac46e61, type: 3}
+  CurrentItemType: 1

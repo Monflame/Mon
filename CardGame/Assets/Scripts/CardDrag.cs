@@ -8,18 +8,22 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	Vector3 offset;
 	public Transform DefaultParent, TempCardParent;
 	GameObject TempCardGO;
+	GameManager gameManager;
 	public bool IsDragable;
+	public int dragCounter;
 
 	void Awake()
 	{
 		TempCardGO = GameObject.Find("TempCardGO");
+		gameManager = FindObjectOfType<GameManager>();
 	}
 
 	public void OnBeginDrag(PointerEventData eventData)
 	{
 		offset = transform.position - (Vector3)eventData.position; 
 		DefaultParent = TempCardParent = transform.parent;
-		IsDragable = DefaultParent.GetComponent<CardDrop>().Type == FieldType.hand_self;
+		IsDragable = DefaultParent.GetComponent<CardDrop>().Type == FieldType.hand_self &&
+		             gameManager.IsPlayerTurn;
 		if(!IsDragable)
 			return;
 		TempCardGO.transform.SetParent(DefaultParent);
@@ -38,7 +42,9 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		if(TempCardGO.transform.parent != TempCardParent)
 			TempCardGO.transform.SetParent(TempCardParent);
-			
+
+		dragCounter = DefaultParent.childCount;
+		Debug.Log(dragCounter);//
 		CheckPosition();
 	}
 

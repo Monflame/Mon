@@ -9,20 +9,20 @@ public static class CardList
 }
 
 public class CardNode : MonoBehaviour {
-
-	void Awake(){
-		/*CardList.AllCards.Add(new CardObj("Lovecraft", "Howard Philips", 1, 1, 1, Resources.Load<Sprite>("Textures/lovecraft")));
-		CardList.AllCards.Add(new CardObj("Cthulhu", "The Great One!", 10, 10, 10, Resources.Load<Sprite>("Textures/cthulhu")));
-		CardList.AllCards.Add(new CardObj("Beholder", "Always watching you", 5, 8, 3, Resources.Load<Sprite>("Textures/beholder")));
-		CardList.AllCards.Add(new CardObj("Ghosts", "Beyond the death and life", 12, 3, 10, Resources.Load<Sprite>("Textures/ghosts")));
-		CardList.AllCards.Add(new CardObj("Alien", "From the outer space", 3, 10, 5, Resources.Load<Sprite>("Textures/alien")));
-		CardList.AllCards.Add(new CardObj("Mummy", "Rised from its tomb", 5, 5, 12, Resources.Load<Sprite>("Textures/mummy")));*/
-		//CardObj cardObj = ScriptableObject.CreateInstance("CardObj") as CardObj;
-		CardObj data = CardObj.CreateInstance("Cthulhu", "The Great One!", 10, 10, 10, Resources.Load<Sprite>("Textures/cthulhu"));
-	}
-
-	void Start()
+	private static CardObj cthulhu, ghosts, mummy, beholder, alien, lovecraft;
+	public void Awake()
 	{
-		CardList.AllCards.Add(new CardObj());
+		cthulhu = Resources.Load<CardObj>("Cards/Cthulhu");
+		ghosts = Resources.Load<CardObj>("Cards/Ghosts");
+		mummy = Resources.Load<CardObj>("Cards/Mummy");
+		beholder = Resources.Load<CardObj>("Cards/Beholder");
+		alien = Resources.Load<CardObj>("Cards/Alien");
+		lovecraft = Resources.Load<CardObj>("Cards/Lovecraft");
+		CardList.AllCards.Add(cthulhu);
+		CardList.AllCards.Add(ghosts);
+		CardList.AllCards.Add(mummy);
+		CardList.AllCards.Add(beholder);
+		CardList.AllCards.Add(alien);
+		CardList.AllCards.Add(lovecraft);
 	}
 }

@@ -56,7 +56,6 @@
      <Compile Include="Assets\Scripts\CardDrop.cs" />
      <Compile Include="Assets\Scripts\CardNode.cs" />
      <Compile Include="Assets\Scripts\CardObj.cs" />
-     <Compile Include="Assets\Scripts\ChangeFrame.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />
@@ -112,11 +111,11 @@
      <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\LiberationSans - OFL.txt" />
      <None Include="Assets\TextMesh Pro\Examples &amp; Extras\Fonts\Bangers - OFL.txt" />
- <Reference Include="UnityEditor.StandardEvents">
- <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
- </Reference>
  <Reference Include="Unity.PackageManagerUI.Editor">
  <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+ </Reference>
+ <Reference Include="UnityEditor.StandardEvents">
+ <HintPath>C:/Users/Shadowone/Documents/Repository/CardGame/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>E:/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

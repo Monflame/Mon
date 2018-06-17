@@ -9,11 +9,14 @@ public class CardPull
 	public List<CardObj> DeckSelf, DeckEnemy,
 						HandSelf, HandEnemy,
 						Fieldself, FieldEnemy;
+	public int counterSelf, counterEnemy;//
 
 	public CardPull()
 	{
 		DeckSelf = GetDeckCards();
 		DeckEnemy = GetDeckCards();
+		counterSelf = GetCounter();//
+		counterEnemy = GetCounter();//
 		HandSelf = new List<CardObj>();
 		HandEnemy = new List<CardObj>();
 		Fieldself = new List<CardObj>();
@@ -27,26 +30,52 @@ public class CardPull
 			list.Add(CardList.AllCards[Random.Range(0,CardList.AllCards.Count)]);	
 		return list;
 	}
+
+	int GetCounter()//
+	{
+		int counter = 0;
+		for(int i = 0; i < 10; i++)
+			counter = i;
+		return counter;
+	}
 }
 
 public class GameManager : MonoBehaviour {
 
 	public CardPull CurrentPull;
 	public Transform HandSelf, HandEnemy;
+	public int counterSelf, counterEnemy;//
 	public GameObject CardPref;
+	int Turn, TurnTime = 30;
+	public TextMeshProUGUI TurnTimeText;
+	public Button EndTurnBtn;
+	public int counter;
+
+	public bool IsPlayerTurn
+	{
+		get
+		{
+			return Turn % 2 == 0;
+		}
+	}
 
 	void Start()
 	{
+		Turn = 0;
 		CurrentPull = new CardPull();
 
 		GetHandCards(CurrentPull.DeckEnemy, HandEnemy);
 		GetHandCards(CurrentPull.DeckSelf, HandSelf);
+		StartCoroutine(TurnFunc());
 	}
+
 	void GetHandCards(List<CardObj> deck, Transform hand)
 	{
 		int i = 0;
 		while(i++ <5)
 			GetCardToHand(deck, hand);
+			counter = i;
+			//Debug.Log("Counter: " + counter);
 	}
 
 	void GetCardToHand(List<CardObj> deck, Transform hand)
@@ -64,5 +93,58 @@ public class GameManager : MonoBehaviour {
 			cardGO.GetComponent<CardDisplay>().ShowCardInfo(card);
 
 		deck.RemoveAt(0);
+	}
+
+	IEnumerator TurnFunc()
+	{
+		TurnTime = 26;
+		TurnTimeText.text = TurnTime.ToString();
+
+		if(IsPlayerTurn)
+		{
+			while(TurnTime-- > 0)
+			{
+				TurnTimeText.text = TurnTime.ToString();
+				yield return new WaitForSeconds(1);
+			}
+		}
+		else
+		{
+			while(TurnTime-- > 22)
+			{
+				TurnTimeText.text = TurnTime.ToString();
+				yield return new WaitForSeconds(1);
+			}
+		}
+		ChangeTurn();
+	}
+
+	/*IEnumerator CardCount()
+	{
+		if(IsPlayerTurn)
+		{
+			if()
+			{
+				
+			}
+		}
+	}*/
+
+	public void ChangeTurn()
+	{
+		StopAllCoroutines();
+		Turn++;
+		EndTurnBtn.interactable = IsPlayerTurn;
+		if(IsPlayerTurn)
+			AddNewCard();
+		StartCoroutine(TurnFunc());
+	}
+
+	void AddNewCard()
+	{
+		GetCardToHand(CurrentPull.DeckEnemy, HandEnemy);
+		GetCardToHand(CurrentPull.DeckSelf, HandSelf);
+		counter++;
+		//Debug.Log("Counter: " + counter);
 	}
 }

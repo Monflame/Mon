@@ -21,6 +21,7 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 			return;
 			
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
+
 		if(card)
 			card.DefaultParent = transform;
 	}
@@ -29,20 +30,21 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 	{
 		if(eventData.pointerDrag == null || Type == FieldType.field_enemy || Type == FieldType.hand_enemy)
 			return;
+
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
 		if(card)
 			card.TempCardParent = transform;
 	}
 
-		public void OnPointerExit(PointerEventData eventData)
+	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (eventData.pointerDrag==null)
+		if (eventData.pointerDrag == null)
 			return;
+
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
 		if(card && card.TempCardParent == transform)
 			card.TempCardParent = card.DefaultParent;
-
 	}
 }
