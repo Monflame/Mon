@@ -14,6 +14,12 @@ public enum FieldType
 public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
 
 	public FieldType Type;
+	GameManager gameManager;
+
+	void Awake()
+	{
+		gameManager = FindObjectOfType<GameManager>();
+	}
 
 	public void OnDrop(PointerEventData eventData)
 	{
@@ -24,6 +30,9 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 		if(card)
 			card.DefaultParent = transform;
+		
+		gameManager.counter--;
+		Debug.Log("Counter = "+ gameManager.counter);
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)

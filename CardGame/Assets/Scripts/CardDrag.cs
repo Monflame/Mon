@@ -41,7 +41,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		if(TempCardGO.transform.parent != TempCardParent)
 			TempCardGO.transform.SetParent(TempCardParent);
-			
+
 		CheckPosition();
 	}
 

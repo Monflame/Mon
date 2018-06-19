@@ -33,11 +33,12 @@ public class GameManager : MonoBehaviour {
 
 	public CardPull CurrentPull;
 	public Transform HandSelf, HandEnemy;
+	public int counterSelf, counterEnemy;//
 	public GameObject CardPref;
 	int Turn, TurnTime = 30;
 	public TextMeshProUGUI TurnTimeText;
 	public Button EndTurnBtn;
-	public int cardCounter = 0;
+	public int counter;
 
 	public bool IsPlayerTurn
 	{
@@ -56,12 +57,14 @@ public class GameManager : MonoBehaviour {
 		GetHandCards(CurrentPull.DeckSelf, HandSelf);
 		StartCoroutine(TurnFunc());
 	}
+
 	void GetHandCards(List<CardObj> deck, Transform hand)
 	{
 		int i = 0;
 		while(i++ <5)
 			GetCardToHand(deck, hand);
-			cardCounter++;
+			counter = i;
+			//Debug.Log("Counter: " + counter);
 	}
 
 	void GetCardToHand(List<CardObj> deck, Transform hand)
@@ -88,7 +91,7 @@ public class GameManager : MonoBehaviour {
 
 		if(IsPlayerTurn)
 		{
-			while(TurnTime-- > 0)
+			while(TurnTime-- > 0 && counter > 1)
 			{
 				TurnTimeText.text = TurnTime.ToString();
 				yield return new WaitForSeconds(1);
@@ -102,18 +105,9 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1);
 			}
 		}
+
 		ChangeTurn();
 	}
-
-	/*IEnumerator CardCount()
-	{
-		if(IsPlayerTurn)
-		{
-			if()
-			{
-				
-			}
-		}*/
 
 	public void ChangeTurn()
 	{
@@ -129,5 +123,7 @@ public class GameManager : MonoBehaviour {
 	{
 		GetCardToHand(CurrentPull.DeckEnemy, HandEnemy);
 		GetCardToHand(CurrentPull.DeckSelf, HandSelf);
+		counter++;
+		//Debug.Log("Counter: " + counter);
 	}
 }
