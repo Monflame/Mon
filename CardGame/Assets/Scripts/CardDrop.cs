@@ -29,15 +29,17 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
 		if(card)
+		{
 			card.DefaultParent = transform;
-		
-		gameManager.counter--;
-		Debug.Log("Counter = "+ gameManager.counter);
+			//gameManager.counter--; //
+		}
+
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		if(eventData.pointerDrag == null || Type == FieldType.field_enemy || Type == FieldType.hand_enemy)
+		if(eventData.pointerDrag == null || Type == FieldType.field_enemy ||
+		   Type == FieldType.hand_enemy)
 			return;
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
