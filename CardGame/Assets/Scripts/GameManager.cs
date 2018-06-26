@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour {
 	int Turn, TurnTime = 30;
 	public TextMeshProUGUI TurnTimeText;
 	public Button EndTurnBtn;
-	//public int counter;
+	public int counter;//
 
 	public bool IsPlayerTurn
 	{
@@ -62,7 +62,7 @@ public class GameManager : MonoBehaviour {
 		int i = 0;
 		while(i++ <5)
 			GetCardToHand(deck, hand);
-			//counter = i;
+			counter = i;//
 	}
 
 	void GetCardToHand(List<CardObj> deck, Transform hand)
@@ -121,6 +121,6 @@ public class GameManager : MonoBehaviour {
 	{
 		GetCardToHand(CurrentPull.DeckEnemy, HandEnemy);
 		GetCardToHand(CurrentPull.DeckSelf, HandSelf);
-		//counter++;
+		counter++;//
 	}
 }

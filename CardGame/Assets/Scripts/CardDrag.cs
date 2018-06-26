@@ -60,8 +60,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	void CheckPosition()
 	{
 		int newIndex = TempCardParent.childCount;
-		int cardsCount = DefaultParent.childCount;//
-		Debug.Log(cardsCount);//
+		//int cardsCount = DefaultParent.childCount;//
+		//Debug.Log(cardsCount);//
 
 		for(int i = 0; i < TempCardParent.childCount; i++)
 		{

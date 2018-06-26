@@ -25,15 +25,20 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 	{
 		if(Type != FieldType.field_self)
 			return;
-			
+
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
 		if(card)
 		{
 			card.DefaultParent = transform;
-			//gameManager.counter--; //
 		}
 
+		if(card.DefaultParent == transform)
+		{
+			Debug.Log(card.DefaultParent.childCount);
+			if(card.DefaultParent.childCount == gameManager.counter-1)
+				Debug.Log("Well!");
+		}
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
@@ -50,7 +55,7 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (eventData.pointerDrag == null)
+		if (eventData.pointerDrag == null || Type != FieldType.hand_self)
 			return;
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
