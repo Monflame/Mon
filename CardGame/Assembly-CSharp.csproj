@@ -51,6 +51,7 @@
      <Compile Include="Assets\Scripts\CardDrop.cs" />
      <Compile Include="Assets\Scripts\CardNode.cs" />
      <Compile Include="Assets\Scripts\CardObj.cs" />
+     <Compile Include="Assets\Scripts\EnemyCard.cs" />
      <Compile Include="Assets\Scripts\GameManager.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01.cs" />
      <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\Benchmark01_UGUI.cs" />

@@ -219,7 +219,7 @@ RectTransform:
   m_GameObject: {fileID: 88131409}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.8645283, y: 1.1629726, z: 1}
+  m_LocalScale: {x: 0.80981165, y: 1.1629726, z: 1}
   m_Children:
   - {fileID: 1664836301}
   m_Father: {fileID: 1684848392}
@@ -227,7 +227,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 367, y: -12}
+  m_AnchoredPosition: {x: 375.9, y: -12}
   m_SizeDelta: {x: 160, y: 30}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &168668777
@@ -1045,7 +1045,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 365, y: 26}
+  m_AnchoredPosition: {x: 374.2, y: 30}
   m_SizeDelta: {x: -696, y: -520}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1664836300
@@ -1317,7 +1317,7 @@ MonoBehaviour:
   CardPref: {fileID: 1242467148753758, guid: 1cf67c6187177fa48b0748d83786fec6, type: 2}
   TurnTimeText: {fileID: 1419736852}
   EndTurnBtn: {fileID: 88131410}
-  cardCounter: 0
+  counter: 0
 --- !u!114 &1684848394
 MonoBehaviour:
   m_ObjectHideFlags: 0

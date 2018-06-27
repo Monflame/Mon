@@ -32,12 +32,11 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 		{
 			card.DefaultParent = transform;
 		}
-
+	
 		if(card.DefaultParent == transform)
 		{
-			Debug.Log(card.DefaultParent.childCount);
 			if(card.DefaultParent.childCount == gameManager.counter-1)
-				Debug.Log("Well!");
+				gameManager.ChangeTurn();
 		}
 	}
 
