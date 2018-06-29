@@ -10,7 +10,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	GameObject TempCardGO;
 	GameManager gameManager;
 	public bool IsDragable;
-	public int dragCounter;
 
 	void Awake()
 	{
@@ -43,8 +42,6 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		if(TempCardGO.transform.parent != TempCardParent)
 			TempCardGO.transform.SetParent(TempCardParent);
 
-		dragCounter = DefaultParent.childCount;
-		Debug.Log(dragCounter);//
 		CheckPosition();
 	}
 

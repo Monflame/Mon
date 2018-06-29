@@ -9,14 +9,11 @@ public class CardPull
 	public List<CardObj> DeckSelf, DeckEnemy,
 						HandSelf, HandEnemy,
 						Fieldself, FieldEnemy;
-	public int counterSelf, counterEnemy;//
 
 	public CardPull()
 	{
 		DeckSelf = GetDeckCards();
 		DeckEnemy = GetDeckCards();
-		counterSelf = GetCounter();//
-		counterEnemy = GetCounter();//
 		HandSelf = new List<CardObj>();
 		HandEnemy = new List<CardObj>();
 		Fieldself = new List<CardObj>();
@@ -30,21 +27,12 @@ public class CardPull
 			list.Add(CardList.AllCards[Random.Range(0,CardList.AllCards.Count)]);	
 		return list;
 	}
-
-	int GetCounter()//
-	{
-		int counter = 0;
-		for(int i = 0; i < 10; i++)
-			counter = i;
-		return counter;
-	}
 }
 
 public class GameManager : MonoBehaviour {
 
 	public CardPull CurrentPull;
 	public Transform HandSelf, HandEnemy;
-	public int counterSelf, counterEnemy;//
 	public GameObject CardPref;
 	int Turn, TurnTime = 30;
 	public TextMeshProUGUI TurnTimeText;
@@ -75,7 +63,6 @@ public class GameManager : MonoBehaviour {
 		while(i++ <5)
 			GetCardToHand(deck, hand);
 			counter = i;
-			//Debug.Log("Counter: " + counter);
 	}
 
 	void GetCardToHand(List<CardObj> deck, Transform hand)
@@ -116,19 +103,9 @@ public class GameManager : MonoBehaviour {
 				yield return new WaitForSeconds(1);
 			}
 		}
+
 		ChangeTurn();
 	}
-
-	/*IEnumerator CardCount()
-	{
-		if(IsPlayerTurn)
-		{
-			if()
-			{
-				
-			}
-		}
-	}*/
 
 	public void ChangeTurn()
 	{
@@ -145,6 +122,5 @@ public class GameManager : MonoBehaviour {
 		GetCardToHand(CurrentPull.DeckEnemy, HandEnemy);
 		GetCardToHand(CurrentPull.DeckSelf, HandSelf);
 		counter++;
-		//Debug.Log("Counter: " + counter);
 	}
 }

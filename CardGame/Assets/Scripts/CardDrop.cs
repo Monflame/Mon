@@ -14,21 +14,36 @@ public enum FieldType
 public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPointerExitHandler {
 
 	public FieldType Type;
+	GameManager gameManager;
+
+	void Awake()
+	{
+		gameManager = FindObjectOfType<GameManager>();
+	}
 
 	public void OnDrop(PointerEventData eventData)
 	{
 		if(Type != FieldType.field_self)
 			return;
-			
+
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
 		if(card)
+		{
 			card.DefaultParent = transform;
+		}
+	
+		if(card.DefaultParent == transform)
+		{
+			if(card.DefaultParent.childCount == gameManager.counter-1)
+				gameManager.ChangeTurn();
+		}
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		if(eventData.pointerDrag == null || Type == FieldType.field_enemy || Type == FieldType.hand_enemy)
+		if(eventData.pointerDrag == null || Type == FieldType.field_enemy ||
+		   Type == FieldType.hand_enemy)
 			return;
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
@@ -39,7 +54,7 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (eventData.pointerDrag == null)
+		if (eventData.pointerDrag == null || Type != FieldType.hand_self)
 			return;
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
