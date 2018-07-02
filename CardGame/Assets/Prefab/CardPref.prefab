@@ -112,7 +112,6 @@ GameObject:
   - component: {fileID: 114688951256909266}
   - component: {fileID: 114653978779315898}
   - component: {fileID: 114078562976333502}
-  - component: {fileID: 114029666335557700}
   - component: {fileID: 225665848118717596}
   m_Layer: 5
   m_Name: CardPref
@@ -173,17 +172,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &114029666335557700
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1242467148753758}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5bd16723478de5a4099d856eebcec208, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &114042607329294712
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -197,7 +185,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultParent: {fileID: 0}
   TempCardParent: {fileID: 0}
-  IsDragable: 0
+  IsPlayerDrag: 0
+  IsEnemyDrag: 0
 --- !u!114 &114043451326590200
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -470,7 +459,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   DefaultParent: {fileID: 0}
   TempCardParent: {fileID: 0}
-  IsDragable: 0
+  IsPlayerDrag: 0
+  IsEnemyDrag: 0
 --- !u!114 &114688951256909266
 MonoBehaviour:
   m_ObjectHideFlags: 1

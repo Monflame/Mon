@@ -9,7 +9,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	public Transform DefaultParent, TempCardParent;
 	GameObject TempCardGO;
 	GameManager gameManager;
-	public bool IsDragable;
+	public bool IsPlayerDrag;
+	public bool IsEnemyDrag;
 
 	void Awake()
 	{
@@ -21,10 +22,19 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	{
 		offset = transform.position - (Vector3)eventData.position; 
 		DefaultParent = TempCardParent = transform.parent;
-		IsDragable = DefaultParent.GetComponent<CardDrop>().Type == FieldType.hand_self &&
+
+		IsPlayerDrag = DefaultParent.GetComponent<CardDrop>().Type == FieldType.hand_self &&
 		             gameManager.IsPlayerTurn;
-		if(!IsDragable)
+
+		IsEnemyDrag = DefaultParent.GetComponent<CardDrop>().Type == FieldType.hand_enemy &&
+					 gameManager.IsEnemyTurn;
+
+		if(!gameManager.IsPlayerTurn && !IsEnemyDrag)
 			return;
+
+		if(!gameManager.IsEnemyTurn && !IsPlayerDrag)
+			return;
+
 		TempCardGO.transform.SetParent(DefaultParent);
 		TempCardGO.transform.SetSiblingIndex(transform.GetSiblingIndex());
 		transform.SetParent(DefaultParent.parent); //turn off if change hierarchy
@@ -33,7 +43,10 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	public void OnDrag(PointerEventData eventData)
 	{
-		if(!IsDragable)
+		if(!gameManager.IsPlayerTurn && !IsEnemyDrag)
+			return;
+
+		if(!gameManager.IsEnemyTurn && !IsPlayerDrag)
 			return;
 
 		Vector3 newPos = eventData.position;
@@ -47,7 +60,10 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 	public void OnEndDrag(PointerEventData eventData)
 	{
-		if(!IsDragable)
+		if(!gameManager.IsPlayerTurn && !IsEnemyDrag)
+			return;
+
+		if(!gameManager.IsEnemyTurn && !IsPlayerDrag)
 			return;
 
 		transform.SetParent(DefaultParent);
@@ -55,6 +71,19 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 		transform.SetSiblingIndex(TempCardGO.transform.GetSiblingIndex());
 		TempCardGO.transform.SetParent(GameObject.Find("Canvas").transform);
 		TempCardGO.transform.localPosition = new Vector3(985,0);
+
+		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
+
+		if(!gameManager.IsEnemyTurn)
+		{
+			if(card.DefaultParent.childCount == gameManager.counterSelf - 1)
+				gameManager.ChangeTurn();
+		}
+		else
+		{
+			if(card.DefaultParent.childCount == gameManager.counterEnemy - 1)
+				gameManager.ChangeTurn();
+		}
 	}
 
 	void CheckPosition()

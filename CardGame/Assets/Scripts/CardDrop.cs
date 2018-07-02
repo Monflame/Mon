@@ -23,8 +23,17 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 	public void OnDrop(PointerEventData eventData)
 	{
-		if(Type != FieldType.field_self)
-			return;
+		if(!gameManager.IsEnemyTurn)
+		{
+			if(Type != FieldType.field_self)
+				return;
+		}
+
+		if(!gameManager.IsPlayerTurn)
+		{
+			if(Type != FieldType.field_enemy)
+				return;
+		}
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
@@ -32,19 +41,22 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 		{
 			card.DefaultParent = transform;
 		}
-	
-		if(card.DefaultParent == transform)
-		{
-			if(card.DefaultParent.childCount == gameManager.counter-1)
-				gameManager.ChangeTurn();
-		}
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)
 	{
-		if(eventData.pointerDrag == null || Type == FieldType.field_enemy ||
-		   Type == FieldType.hand_enemy)
-			return;
+		if(!gameManager.IsEnemyTurn)
+		{
+			if(eventData.pointerDrag == null || Type == FieldType.field_enemy ||
+			   Type == FieldType.hand_enemy)
+				return;
+		}
+		else
+		{
+			if(eventData.pointerDrag == null || Type == FieldType.field_self ||
+			   Type == FieldType.hand_self)
+				return;
+		}
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
@@ -54,8 +66,16 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 	public void OnPointerExit(PointerEventData eventData)
 	{
-		if (eventData.pointerDrag == null || Type != FieldType.hand_self)
-			return;
+		if(!gameManager.IsEnemyTurn)
+		{
+			if (eventData.pointerDrag == null || Type != FieldType.hand_self)
+				return;
+		}
+		else
+		{
+			if (eventData.pointerDrag == null || Type != FieldType.hand_enemy)
+				return;
+		}
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
