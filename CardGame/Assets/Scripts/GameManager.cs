@@ -37,8 +37,8 @@ public class GameManager : MonoBehaviour {
 	int Turn, TurnTime = 30;
 	public TextMeshProUGUI TurnTimeText;
 	public Button EndTurnBtn;
-	public int counterSelf;
-	public int counterEnemy;
+	List<GameObject> playerList = new List<GameObject>();
+	List<GameObject> enemyList = new List<GameObject>();
 
 	public bool IsPlayerTurn
 	{
@@ -63,6 +63,15 @@ public class GameManager : MonoBehaviour {
 
 		GetHandCards(CurrentPull.DeckEnemy, HandEnemy); //give start set for enemy from random deck list
 		GetHandCards(CurrentPull.DeckSelf, HandSelf); //the same is for Player
+
+		//shows how to define and use gameObjects in list
+		/*for(int i = 0; i < playerList.Count; i = playerList.Count-1)
+		{
+			Destroy(playerList[i].gameObject);
+			playerList.Remove(playerList[i]);
+			Debug.Log("player: "+ playerList.Count);
+		}*/
+
 		StartCoroutine(TurnFunc()); //init turn/timer
 	}
 
@@ -71,9 +80,6 @@ public class GameManager : MonoBehaviour {
 		int i = 0;
 		while(i++ <5) //count 5 items
 			GetCardToHand(deck, hand);
-			counterSelf = i;
-			counterEnemy = i;
-			Debug.Log(counterSelf + " : " + counterEnemy);
 	}
 
 	void GetCardToHand(List<CardObj> deck, Transform hand)
@@ -86,11 +92,17 @@ public class GameManager : MonoBehaviour {
 		GameObject cardGO = Instantiate(CardPref, hand, false); //spawn object's clones onto some layer
 
 		if(hand == HandEnemy)
+		{
 			cardGO.GetComponent<CardDisplay>().HideCardInfo(card); //doesn't use yet
+			enemyList.Add(cardGO);
+		}
 		else
+		{
 			cardGO.GetComponent<CardDisplay>().ShowCardInfo(card); //display's all card info
+			playerList.Add(cardGO);
+		}
 
-		deck.RemoveAt(0); //stop when there'is 0 items in the set
+		deck.RemoveAt(0); //stop when there is 0 items in the set
 	}
 
 	IEnumerator TurnFunc()
@@ -131,9 +143,6 @@ public class GameManager : MonoBehaviour {
 	void AddNewCard()
 	{
 		GetCardToHand(CurrentPull.DeckEnemy, HandEnemy);
-		counterEnemy++;
 		GetCardToHand(CurrentPull.DeckSelf, HandSelf);
-		counterSelf++;
-		Debug.Log(counterSelf + " : " + counterEnemy);
 	}
 }

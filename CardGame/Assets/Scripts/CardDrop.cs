@@ -23,24 +23,27 @@ public class CardDrop : MonoBehaviour, IDropHandler, IPointerEnterHandler, IPoin
 
 	public void OnDrop(PointerEventData eventData)
 	{
-		if(!gameManager.IsEnemyTurn)
+		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
+
+		if(gameManager.IsPlayerTurn)
 		{
 			if(Type != FieldType.field_self)
 				return;
 		}
 
-		if(!gameManager.IsPlayerTurn)
+		if(gameManager.IsEnemyTurn)
 		{
 			if(Type != FieldType.field_enemy)
 				return;
 		}
 
-		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
-
 		if(card)
 		{
 			card.DefaultParent = transform;
 		}
+
+		/*if(card.DefaultParent.childCount == gameManager.counterSelf - 1)
+			gameManager.ChangeTurn();*/
 	}
 
 	public void OnPointerEnter(PointerEventData eventData)

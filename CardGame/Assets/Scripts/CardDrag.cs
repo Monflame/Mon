@@ -8,6 +8,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	Vector3 offset;
 	public Transform DefaultParent, TempCardParent;
 	GameObject TempCardGO;
+	GameObject HandSelf;
+	GameObject HandEnemy;
 	GameManager gameManager;
 	public bool IsPlayerDrag;
 	public bool IsEnemyDrag;
@@ -15,6 +17,8 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 	void Awake()
 	{
 		TempCardGO = GameObject.Find("TempCardGO");
+		HandSelf = GameObject.Find("HandSelf");
+		HandEnemy = GameObject.Find("HandEnemy");
 		gameManager = FindObjectOfType<GameManager>();
 	}
 
@@ -34,7 +38,7 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		if(!gameManager.IsEnemyTurn && !IsPlayerDrag)
 			return;
-
+		
 		TempCardGO.transform.SetParent(DefaultParent);
 		TempCardGO.transform.SetSiblingIndex(transform.GetSiblingIndex());
 		transform.SetParent(DefaultParent.parent); //turn off if change hierarchy
@@ -74,16 +78,11 @@ public class CardDrag : MonoBehaviour, IBeginDragHandler, IDragHandler, IEndDrag
 
 		CardDrag card = eventData.pointerDrag.GetComponent<CardDrag>();
 
-		if(!gameManager.IsEnemyTurn)
-		{
-			if(card.DefaultParent.childCount == gameManager.counterSelf - 1)
-				gameManager.ChangeTurn();
-		}
-		else
-		{
-			if(card.DefaultParent.childCount == gameManager.counterEnemy - 1)
-				gameManager.ChangeTurn();
-		}
+		if(HandSelf.transform.childCount == 0 && !gameManager.IsEnemyTurn)
+			gameManager.ChangeTurn();
+
+		if(HandEnemy.transform.childCount == 0 && !gameManager.IsPlayerTurn)
+			gameManager.ChangeTurn();
 	}
 
 	void CheckPosition()
