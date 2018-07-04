@@ -1215,6 +1215,7 @@ GameObject:
   - component: {fileID: 1684848389}
   - component: {fileID: 1684848393}
   - component: {fileID: 1684848394}
+  - component: {fileID: 1684848395}
   m_Layer: 5
   m_Name: Canvas
   m_TagString: Untagged
@@ -1317,6 +1318,8 @@ MonoBehaviour:
   CardPref: {fileID: 1242467148753758, guid: 1cf67c6187177fa48b0748d83786fec6, type: 2}
   TurnTimeText: {fileID: 1419736852}
   EndTurnBtn: {fileID: 88131410}
+  playerList: []
+  enemyList: []
 --- !u!114 &1684848394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1328,6 +1331,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4d7eb257dd71dd74891d107dff190269, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1684848395
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1684848388}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3b91f6ecd81e224e902be479ce8c41c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fromPos: {x: 0, y: 0, z: 0}
+  toPos: {x: 0, y: 0, z: 0}
 --- !u!1 &1839695414
 GameObject:
   m_ObjectHideFlags: 0

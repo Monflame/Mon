@@ -37,8 +37,9 @@ public class GameManager : MonoBehaviour {
 	int Turn, TurnTime = 30;
 	public TextMeshProUGUI TurnTimeText;
 	public Button EndTurnBtn;
-	List<GameObject> playerList = new List<GameObject>();
-	List<GameObject> enemyList = new List<GameObject>();
+	public List<GameObject> playerList = new List<GameObject>();
+	public List<GameObject> enemyList = new List<GameObject>();
+	EnemyTurn enemyTurn;
 
 	public bool IsPlayerTurn
 	{
@@ -54,6 +55,11 @@ public class GameManager : MonoBehaviour {
 		{
 			return Turn % 2 == 1;
 		}
+	}
+
+	void Awake()
+	{
+		enemyTurn = FindObjectOfType<EnemyTurn>();
 	}
 
 	void Start()
@@ -138,6 +144,8 @@ public class GameManager : MonoBehaviour {
 		if(IsPlayerTurn)
 			AddNewCard();
 		StartCoroutine(TurnFunc());
+		if(!IsPlayerTurn)
+			StartCoroutine(enemyTurn.EnemyCards());
 	}
 
 	void AddNewCard()
